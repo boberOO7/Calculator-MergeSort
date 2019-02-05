@@ -1,35 +1,39 @@
 package com.liakhovskyi.calculator;
 
-import java.util.TreeMap;
-
 public class ConvertingToRoman {
 
-    private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+    private enum RomanNumbers {
+        I(1),
+        IV(4),
+        V(5),
+        IX(9),
+        X(10),
+        XL(40),
+        L(50),
+        XC(90),
+        C(100),
+        CD(400),
+        D(500),
+        CM(900),
+        M(1000);
 
-    static {
+        private int value;
 
-        map.put(1000, "M");
-        map.put(900, "CM");
-        map.put(500, "D");
-        map.put(400, "CD");
-        map.put(100, "C");
-        map.put(90, "XC");
-        map.put(50, "L");
-        map.put(40, "XL");
-        map.put(10, "X");
-        map.put(9, "IX");
-        map.put(5, "V");
-        map.put(4, "IV");
-        map.put(1, "I");
-
-    }
-
-    public final static String convertToRoman(int number) {
-        int l =  map.floorKey(number);
-        if ( number == l ) {
-            return map.get(number);
+        RomanNumbers(int value) {
+            this.value = value;
         }
-        return map.get(l) + convertToRoman(number-l);
     }
 
+    public static String convertToRoman(int number) {
+        StringBuilder builder = new StringBuilder();
+
+        final RomanNumbers[] values = RomanNumbers.values();
+        for (int i = values.length - 1; i >= 0; i--) {
+            while (number >= values[i].value) {
+                builder.append(values[i]);
+                number -= values[i].value;
+            }
+        }
+        return builder.toString();
+    }
 }
