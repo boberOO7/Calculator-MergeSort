@@ -25,21 +25,21 @@ public class Calculator {
 
         if(compareNumbersType(typeOfFirstNumber, typeOfSecondNumber)) {
             char operation = getOperation();
-            result = calc(firstNumber, secondNumber, operation);
+            result = calculate(firstNumber, secondNumber, operation);
             finalResult = convertToRoman((int)result);
         } else {
             char operation = getOperation();
-            result = calc(firstNumber, secondNumber, operation);
+            result = calculate(firstNumber, secondNumber, operation);
             finalResult = String.valueOf(result);
         }
 
 
         System.out.println("Result: " + finalResult);
-        System.out.println("Result: " + result);
+        /*System.out.println("Result: " + result);
         System.out.println("Value: " + firstNumber);
         System.out.println("Value: " + secondNumber);
         System.out.println("Type: " + typeOfFirstNumber);
-        System.out.println("Type: " + typeOfSecondNumber);
+        System.out.println("Type: " + typeOfSecondNumber);*/
     }
 
     public Calculator(double number, String comparator) {
@@ -90,24 +90,24 @@ public class Calculator {
         return operation;
     }
 
-    private static double calc(double num1, double num2, char operation) {
+    private static double calculate(double firstNumber, double secondNumber, char operation) {
         double result;
         switch (operation) {
             case '+':
-                result = num1 + num2;
+                result = firstNumber + secondNumber;
                 break;
             case '-':
-                result = num1 - num2;
+                result = firstNumber - secondNumber;
                 break;
             case '*':
-                result = num1 * num2;
+                result = firstNumber * secondNumber;
                 break;
             case '/':
-                result = num1 / num2;
+                result = firstNumber / secondNumber;
                 break;
             default:
                 System.out.println("Operation not recognized. Re-enter operation.");
-                result = calc(num1, num2, getOperation());
+                result = calculate(firstNumber, secondNumber, getOperation());
         }
         return result;
     }
