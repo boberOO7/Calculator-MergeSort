@@ -23,10 +23,10 @@ public class Calculator {
         double result;
         String finalResult;
 
-        if(compareNumbersType(typeOfFirstNumber, typeOfSecondNumber)) {
+        if (compareNumbersType(typeOfFirstNumber, typeOfSecondNumber)) {
             char operation = getOperation();
             result = calculate(firstNumber, secondNumber, operation);
-            finalResult = convertToRoman((int)result);
+            finalResult = convertToRoman((int) result);
         } else {
             char operation = getOperation();
             result = calculate(firstNumber, secondNumber, operation);
@@ -40,6 +40,9 @@ public class Calculator {
         System.out.println("Value: " + secondNumber);
         System.out.println("Type: " + typeOfFirstNumber);
         System.out.println("Type: " + typeOfSecondNumber);*/
+    }
+
+    public Calculator() {
     }
 
     public Calculator(double number, String comparator) {
@@ -90,7 +93,7 @@ public class Calculator {
         return operation;
     }
 
-    private static double calculate(double firstNumber, double secondNumber, char operation) {
+    static double calculate(double firstNumber, double secondNumber, char operation) {
         double result;
         switch (operation) {
             case '+':
@@ -103,6 +106,9 @@ public class Calculator {
                 result = firstNumber * secondNumber;
                 break;
             case '/':
+                if (secondNumber == 0) {
+                    throw new ArithmeticException("Divide by zero!");
+                }
                 result = firstNumber / secondNumber;
                 break;
             default:
@@ -126,7 +132,7 @@ public class Calculator {
             System.exit(0);
             return false;
         }
-        if (firstTypeNumber.equals(secondTypeNumber) && firstTypeNumber.equals("Roman") ) {
+        if (firstTypeNumber.equals(secondTypeNumber) && firstTypeNumber.equals("Roman")) {
             return true;
         }
         return false;
